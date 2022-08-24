@@ -14,6 +14,7 @@ class App extends React.Component {
     cardTrunfo: false,
     isSaveButtonDisabled: true,
     card: [],
+    hasTrunfo: false,
   };
 
   validationSaveButton = () => {
@@ -62,6 +63,10 @@ class App extends React.Component {
   };
 
   saveButton = () => {
+    const { cardTrunfo } = this.state;
+    this.setState({
+      hasTrunfo: cardTrunfo,
+    });
     this.setState((estadoAnterior) => ({
       card: [...estadoAnterior.card],
     }), () => {
@@ -86,7 +91,8 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      isSaveButtonDisabled } = this.state;
+      isSaveButtonDisabled,
+      hasTrunfo } = this.state;
 
     return (
       <div>
@@ -103,6 +109,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
+          hasTrunfo={ hasTrunfo }
         />
         <Card
           cardName={ cardName }
@@ -113,7 +120,6 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
         />
       </div>
     );

@@ -64,9 +64,7 @@ class App extends React.Component {
 
   saveButton = () => {
     const { cardTrunfo } = this.state;
-    this.setState({
-      hasTrunfo: cardTrunfo,
-    });
+    if (cardTrunfo) this.setState({ hasTrunfo: true });
     this.setState((estadoAnterior) => ({
       card: [...estadoAnterior.card],
     }), () => {
@@ -78,6 +76,7 @@ class App extends React.Component {
         cardAttr3: '0',
         cardImage: '',
         cardRare: 'normal',
+        cardTrunfo: false,
       });
     });
   };

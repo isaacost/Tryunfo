@@ -15,3 +15,10 @@ code {
 .cartasSalvas {
   display: flex;
 }
+
+.cartas {
+  background: rgb(236, 170, 170);
+  border: 1px solid black;
+  height: 300px;
+  width: 200px;
+}

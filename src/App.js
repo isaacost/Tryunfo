@@ -6,13 +6,14 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: '',
-    cardAttr2: '',
-    cardAttr3: '',
+    cardAttr1: '0',
+    cardAttr2: '0',
+    cardAttr3: '0',
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
+    card: [],
   };
 
   validationSaveButton = () => {
@@ -60,6 +61,22 @@ class App extends React.Component {
     });
   };
 
+  saveButton = () => {
+    this.setState((estadoAnterior) => ({
+      card: [...estadoAnterior.card],
+    }), () => {
+      this.setState({
+        cardName: '',
+        cardDescription: '',
+        cardAttr1: '0',
+        cardAttr2: '0',
+        cardAttr3: '0',
+        cardImage: '',
+        cardRare: 'normal',
+      });
+    });
+  };
+
   render() {
     const { cardName,
       cardDescription,
@@ -76,6 +93,7 @@ class App extends React.Component {
         <h1>Tryunfo</h1>
         <Form
           onInputChange={ this.handleChange }
+          onSaveButtonClick={ this.saveButton }
           cardName={ cardName }
           cardDescription={ cardDescription }
           cardAttr1={ cardAttr1 }

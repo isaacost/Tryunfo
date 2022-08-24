@@ -6,14 +6,14 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: '0',
-    cardAttr2: '0',
-    cardAttr3: '0',
+    cardAttr1: 0,
+    cardAttr2: 0,
+    cardAttr3: 0,
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
-    card: [],
+    cards: [],
     hasTrunfo: false,
   };
 
@@ -62,18 +62,18 @@ class App extends React.Component {
     });
   };
 
-  saveButton = () => {
+  saveButton = (objeto) => {
     const { cardTrunfo } = this.state;
     if (cardTrunfo) this.setState({ hasTrunfo: true });
     this.setState((estadoAnterior) => ({
-      card: [...estadoAnterior.card],
+      cards: [...estadoAnterior.cards, objeto],
     }), () => {
       this.setState({
         cardName: '',
         cardDescription: '',
-        cardAttr1: '0',
-        cardAttr2: '0',
-        cardAttr3: '0',
+        cardAttr1: 0,
+        cardAttr2: 0,
+        cardAttr3: 0,
         cardImage: '',
         cardRare: 'normal',
         cardTrunfo: false,
@@ -91,7 +91,8 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       isSaveButtonDisabled,
-      hasTrunfo } = this.state;
+      hasTrunfo,
+      cards } = this.state;
 
     return (
       <div>
@@ -120,6 +121,24 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
+        <div>
+          <h1> Cartas Salvas </h1>
+          <div className="cartasSalvas">
+            {
+              cards.map((card) => (<Card
+                key={ card.cardName }
+                cardName={ card.cardName }
+                cardDescription={ card.cardDescription }
+                cardAttr1={ card.cardAttr1 }
+                cardAttr2={ card.cardAttr2 }
+                cardAttr3={ card.cardAttr3 }
+                cardImage={ card.cardImage }
+                cardRare={ card.cardRare }
+                cardTrunfo={ card.cardTrunfo }
+              />))
+            }
+          </div>
+        </div>
       </div>
     );
   }
